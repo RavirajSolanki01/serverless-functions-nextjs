@@ -11,13 +11,10 @@ const Posts = () => {
       try {
         const response = await fetch("/api/blogs"); // Replace with your API endpoint
         const jsonData = await response.json();
-        console.log(jsonData, "jsonData");
         setPosts(jsonData.posts);
       } catch (error) {
         console.error("Error fetching data:", error);
-      } finally {
-        // setLoading(false);
-      }
+      } 
     }
 
     fetchData();

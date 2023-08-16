@@ -14,13 +14,10 @@ const PostId = () => {
       try {
         const response = await fetch(`/api/blogs/${id}`); // Replace with your API endpoint
         const jsonData = await response.json();
-        console.log(jsonData, "jsonData");
         setPosts(jsonData.post);
       } catch (error) {
         console.error("Error fetching data:", error);
-      } finally {
-        // setLoading(false);
-      }
+      } 
     }
     fetchData();
   }, []);
@@ -33,7 +30,6 @@ const PostId = () => {
     try {
       fetch(`/api/blogs/${id}`, { method: "DELETE" })
         .then((response) => response.json())
-        .then((data) => console.log(data))
         .then(() => router.push("/posts"));
     } catch (error) {
       console.error("Error fetching data:", error);

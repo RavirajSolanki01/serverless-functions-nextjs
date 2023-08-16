@@ -4,13 +4,10 @@ import { NextResponse } from "next/server";
 export const GET = async (req: Request) => {
   try {
     const id = req.url.split("blogs/")[1];
-    //   console.log(id);
     const post = getById(id);
     if (!post) {
       return NextResponse.json({ message: "Error" }, { status: 404 });
     }
-    console.log("done", post);
-    
     return NextResponse.json({ message: "OK", post }, { status: 200 });
   } catch (error) {
     return NextResponse.json({ message: "Error", error }, { status: 500 });

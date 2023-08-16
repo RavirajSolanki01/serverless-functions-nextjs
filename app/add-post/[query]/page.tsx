@@ -18,8 +18,6 @@ export default function Example() {
     e.preventDefault();
 
     if (query !== "add") {
-      console.log(query);
-
       const requestOptions = {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -28,7 +26,6 @@ export default function Example() {
       try {
         fetch(`/api/blogs/${query}`, requestOptions)
           .then((response) => response.json())
-          .then((data) => console.log(data))
           .then(() => router.push("/posts"));
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -46,7 +43,6 @@ export default function Example() {
       try {
         fetch("/api/blogs", requestOptions)
           .then((response) => response.json())
-          .then((data) => console.log(data))
           .then(() => router.push("/posts"));
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -59,20 +55,15 @@ export default function Example() {
       try {
         const response = await fetch(`/api/blogs/${query}`); // Replace with your API endpoint
         const jsonData = await response.json();
-        console.log(jsonData, "jsonDataquery");
         setPost(jsonData.post);
       } catch (error) {
         console.error("Error fetching data:", error);
-      } finally {
-        // setLoading(false);
-      }
+      } 
     }
     if (query !== "add") {
       fetchData();
     }
   }, []);
-  console.log(post);
-  
 
   return (
     <div className="flex justify-center p-2 w-full">
